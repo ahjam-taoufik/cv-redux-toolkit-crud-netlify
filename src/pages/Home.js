@@ -1,40 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
-const contactData = [
-  {
-    id: 1,
-    name: "Ahjam Taoufik",
-    email: "taoufik@gmail.com",
-    phone: "+21267656526",
-    status: "Active",
-  },
-  {
-    id: 2,
-    name: "Etaqi Kamal",
-    email: "jEtaqi@gmail.com",
-    phone: "+212878446746",
-    status: "Inactive",
-  },
-  {
-    id: 3,
-    name: "Jimi Hendrix",
-    email: "jamesgun@gmail.com",
-    phone: "+212768446746",
-    status: "Active",
-  },
-  {
-    id: 4,
-    name: "James Bond",
-    email: "jamesbond@gmail.com",
-    phone: "+212768446746",
-    status: "Inactive",
-  },
-];
-
 const Home = () => {
-    
+
+  const {contacts}=useSelector(state=>state.contacts);
+   
   const onDeleteContact = (id) => {
     if (
       window.confirm("Are you sure that you wanted to delete that contact ?")
@@ -43,7 +15,6 @@ const Home = () => {
   };
 
   const filterData = (value) => {};
-
   return (
     <div style={{ marginTop: "150px" }}>
       <Link to="/addContact">
@@ -62,7 +33,7 @@ const Home = () => {
           </tr>
         </thead>
         <tbody>
-          {contactData.map((item, index) => {
+          {contacts.map((item, index) => {
             return (
               <tr key={item.id}>
                 <th scope="row">{index + 1}</th>
