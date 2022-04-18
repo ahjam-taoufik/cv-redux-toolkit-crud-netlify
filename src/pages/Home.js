@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { deleteContact } from "../redux/features/contactSlice";
 import "./Home.css";
 
@@ -13,6 +14,8 @@ const Home = () => {
       window.confirm("Are you sure that you wanted to delete that contact ?")
     ) {
       dispatch(deleteContact(id));
+      toast.success("Contact deleted successfully");
+
     }
   };
 

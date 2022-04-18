@@ -44,6 +44,9 @@ const contactSlice = createSlice({
       
     },
     reducers: {
+        getContact: (state, action) => {
+            state.contact=state.contacts.find((contact)=>contact.id==action.payload)
+        },    
         addContact: (state, action) => {
           const newContact ={...action.payload, id: uuidv4()}
           state.contacts=[...state.contacts, newContact]
@@ -52,10 +55,15 @@ const contactSlice = createSlice({
         deleteContact: (state, action) => {
           state.contacts = state.contacts.filter(contact => contact.id !== action.payload)
         },
+        updateContact: (state, action) => {
+          const contact = state.contacts.find(item => item.id === action.payload.id)
+          const index = state.contacts.indexOf(contact)
+          state.contacts[index] = action.payload
+        },
 
       },
 });
 
-export const {addContact,deleteContact}=contactSlice.actions;
+export const {getContact,addContact,deleteContact,updateContact}=contactSlice.actions;
 
 export default contactSlice.reducer;
