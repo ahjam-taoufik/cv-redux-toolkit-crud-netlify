@@ -1,16 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteContact } from "../redux/features/contactSlice";
 import "./Home.css";
 
 const Home = () => {
-
+  const dispatch=useDispatch();
   const {contacts}=useSelector(state=>state.contacts);
    
   const onDeleteContact = (id) => {
     if (
       window.confirm("Are you sure that you wanted to delete that contact ?")
     ) {
+      dispatch(deleteContact(id));
     }
   };
 
