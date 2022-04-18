@@ -59,6 +59,11 @@ const contactSlice = createSlice({
           const contact = state.contacts.find(item => item.id === action.payload.id)
           const index = state.contacts.indexOf(contact)
           state.contacts[index] = action.payload
+
+            // this is the same as above but less in performance because it 
+            // be can mapping on all of items
+            // state.contacts=state.contacts.map(contact=>
+            // contact.id===action.payload.id?action.payload:contact)
         },
 
       },
