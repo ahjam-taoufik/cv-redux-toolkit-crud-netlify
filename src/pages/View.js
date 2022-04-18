@@ -10,8 +10,6 @@ const View = () => {
 
 
   const {contact}=useSelector(state=>state.contacts);
-  
-  console.log(contact);
  
   useEffect(() => {
     dispatch(getContact(id)); 

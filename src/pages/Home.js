@@ -8,8 +8,7 @@ import "./Home.css";
 const Home = () => {
   const dispatch=useDispatch();
   const {contacts,filter}=useSelector(state=>state.contacts);
-console.log(filter);
-   console.log(filter);
+
   const onDeleteContact = (id) => {
     if (
       window.confirm("Are you sure that you wanted to delete that contact ?")
