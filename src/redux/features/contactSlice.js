@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-
+import {v4 as uuidv4} from "uuid"
 
 const contactSlice = createSlice({
     name: 'contact',
@@ -42,8 +42,16 @@ const contactSlice = createSlice({
             status: "",
         },
       
-    }
+    },
+    reducers: {
+        addContact: (state, action) => {
+          const newContact ={...action.payload, id: uuidv4()}
+          state.contacts=[...state.contacts, newContact]
+          // state.contacts.push(newContact)   // this is the same as above
+        },
+      },
 });
 
+export const {addContact}=contactSlice.actions;
 
 export default contactSlice.reducer;

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams, Link } from "react-router-dom";
 import "./AddEdit.css";
 import { toast } from "react-toastify";
+import { addContact } from "../redux/features/contactSlice";
+import { useDispatch } from "react-redux";
 
 const initialState = {
   name: "",
@@ -11,6 +13,8 @@ const initialState = {
 };
 
 const AddEdit = () => {
+  const history = useHistory();
+  const dispatch=useDispatch();
   const [state, setState] = useState(initialState);
 
   const { name, email, phone, status } = state;
@@ -20,10 +24,15 @@ const AddEdit = () => {
     if (!name || !email || !phone || !status) {
       toast.error("Please provide value into each input field");
     } else {
+
+    dispatch(addContact(state))  
+
+    setTimeout(() => {
+      history.push("/");
+    }, 1000);
       
     }
   };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
