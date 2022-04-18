@@ -2,13 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { deleteContact } from "../redux/features/contactSlice";
+import { deleteContact, getFilter} from "../redux/features/contactSlice";
 import "./Home.css";
 
 const Home = () => {
   const dispatch=useDispatch();
-  const {contacts}=useSelector(state=>state.contacts);
-   
+  const {contacts,filter}=useSelector(state=>state.contacts);
+console.log(filter);
+   console.log(filter);
   const onDeleteContact = (id) => {
     if (
       window.confirm("Are you sure that you wanted to delete that contact ?")
@@ -19,12 +20,22 @@ const Home = () => {
     }
   };
 
+
+ const HandleActive=(v)=>{
+  dispatch(getFilter(v))
+ }
+
+
+
   const filterData = (value) => {};
   return (
     <div style={{ marginTop: "150px" }}>
       <Link to="/addContact">
         <button className="btn btn-contact">Add Contact</button>
       </Link>
+      <button className="btn btn-active" onClick={()=>HandleActive('Active')} >Active</button>
+      <button className="btn btn-inactive" onClick={()=>HandleActive('Inactive')}>inactive</button>
+      <button className="btn btn-reset" onClick={()=>HandleActive('All')}>Reset</button>
 
       <table className="styled-table">
         <thead>
@@ -38,7 +49,13 @@ const Home = () => {
           </tr>
         </thead>
         <tbody>
-          {contacts.map((item, index) => {
+          {contacts.filter(contact=>{
+              if(filter==="All"){
+                return contact
+              }else{
+                return contact.status===filter
+              }
+            }).map((item, index) => {
             return (
               <tr key={item.id}>
                 <th scope="row">{index + 1}</th>

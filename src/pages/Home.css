@@ -63,16 +63,16 @@
   
   
   .btn-active {
-    background-color: #808c4a;
+    background-color: #05922f;
     color: #fff;
   }
 
   .btn-inactive {
-    background-color: #445f61;
+    background-color: #9b9fa0;
     color: #fff;
   }
 
   .btn-reset {
-    background-color: darkolivegreen;
+    background-color: rgb(96, 190, 245);
     color: #fff;
   }

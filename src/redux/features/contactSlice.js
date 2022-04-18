@@ -34,14 +34,14 @@ const contactSlice = createSlice({
             status: "Inactive",
           },
         ],
-        filter: 'All',
         contact:{
-            name: "",
-            email: "",
-            phone: "",
-            status: "",
+          name: "",
+          email: "",
+          phone: "",
+          status: "",
         },
-      
+        filter: "All",
+        
     },
     reducers: {
         getContact: (state, action) => {
@@ -66,9 +66,14 @@ const contactSlice = createSlice({
             // contact.id===action.payload.id?action.payload:contact)
         },
 
+        getFilter: (state, action) => {
+          state.filter = action.payload
+        }
       },
+
+
 });
 
-export const {getContact,addContact,deleteContact,updateContact}=contactSlice.actions;
+export const {getContact,addContact,deleteContact,updateContact,getFilter}=contactSlice.actions;
 
 export default contactSlice.reducer;
